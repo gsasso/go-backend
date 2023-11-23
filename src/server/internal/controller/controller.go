@@ -30,3 +30,11 @@ func (ctlr *LogisticCtlr) UnitReachedWarehouse(ctx context.Context, req *serverA
 	resp := &serverApi.DefaultResponse{}
 	return resp, nil
 }
+
+func (ctlr *LogisticCtlr) GetSummary(ctx context.Context, req *serverApi.DefaultRequest) (*serverApi.SummaryResponse, error) {
+	resp, err := ctlr.svc.GetSummary()
+	if err != nil {
+		return nil, err
+	}
+	return &serverApi.SummaryResponse{TotalUnits: resp.TotalUnits, TotalReached: resp.TotalReached}, nil
+}

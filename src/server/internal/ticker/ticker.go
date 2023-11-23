@@ -14,8 +14,8 @@ type Summary struct {
 }
 
 type SummaryResponse struct {
-	totalUnits   int `json:"totalUnits"`
-	totalReached int `json:"totalReached"`
+	TotalUnits   int64
+	TotalReached int64
 }
 
 var summaryResult Summary
@@ -81,7 +81,7 @@ func (s *SummaryService) GetSummary() (SummaryResponse, error) {
 	summaryResult.mu.Lock()
 	defer summaryResult.mu.Unlock()
 	return SummaryResponse{
-		totalUnits:   summaryResult.totalUnits,
-		totalReached: summaryResult.totalReached,
+		TotalUnits:   int64(summaryResult.totalUnits),
+		TotalReached: int64(summaryResult.totalReached),
 	}, nil
 }
