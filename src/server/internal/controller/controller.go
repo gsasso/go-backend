@@ -13,6 +13,7 @@ type LogisticCtlr struct {
 }
 
 func NewLogisticController(svc ticker.SummaryInt) *LogisticCtlr {
+	// TODO Major: That could be problem, never execute code in constructors since it's hared to control code flow, Tick must be called somewhere else.
 	go svc.Tick()
 	return &LogisticCtlr{
 		svc: svc,
